@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Springfield High School",
+        "image": "school-springfield.jpg",
+        "alt": "Front view of Springfield High School"
+    },
+    {
+        "name": "Riverside Elementary School",
+        "image": "school-riverside.jpg",
+        "alt": "Playground and entrance of Riverside Elementary School"
+    },
+    {
+        "name": "Hill Valley High",
+        "image": "",
+        "alt": "Image of Hill Valley High School not available"
+    },
+    {
+        "name": "Sunnydale Middle School",
+        "image": "",
+        "alt": "Sunnydale Middle School, main building not available"
+    }
+]
