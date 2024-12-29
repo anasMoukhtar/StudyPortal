@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.sign-up {
+    background-image: linear-gradient(180deg, hsla(280, 95%, 57%, 1) 0%, hsla(193, 90%, 55%, 1) 100%);
+    position: relative;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    background-color: rgb(232, 241, 249);
+    color: #fdeded;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.signup-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#name, #email, #password, #confirm-password {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+#name, #email, #password :focus{
+    outline: none;
+}
+#confirm-password:focus {
+    outline: none; 
+    border: none;  
+}
+
+#submit {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+#submit:hover {
+    background-color: #45a049;
+}
+
+.account-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.account-link a {
+    color: rgb(29, 32, 212);
+    text-decoration: none;
+}
+
+.account-link a:hover {
+    text-decoration: underline;
+}

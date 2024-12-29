@@ -1,3 +1,8 @@
+// sign up button click
+function signUpButtonClick(){
+    window.open('./Sign-up/sign-up.html','_blank')
+}
+
 // Helper function to fetch schools from a local JSON file
 async function fetchSchools(query) {
     try {
