@@ -1,0 +1,62 @@
+/* Navigation Bar */
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+nav {
+    display: flex;
+    position: fixed;
+    width: 95%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.left-section img {
+    max-height: 50px;
+}
+
+.left-section ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 15px;
+}
+
+.left-section ul li a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.left-section ul li a:hover {
+    color: #4caf50;
+    text-decoration: underline;
+}
+
+.right-section button {
+    padding: 8px 12px;
+    border: 2px solid #333;
+    background-color: #fff;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform 0.3s, background-color 0.3s;
+    margin-left: 10px;
+}
+
+.right-section button:hover {
+    transform: scale(1.1);
+    background-color: #4caf50;
+    color: #fff;
+}
