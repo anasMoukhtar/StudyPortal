@@ -1,0 +1,112 @@
+.price-containers {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 15px; /* Space between boxes */
+    flex-wrap: wrap;
+    padding: 15px;
+}
+
+.price-containers ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 0;
+}
+
+.price-containers li {
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    border-radius: 12px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    width: 260px;
+    text-align: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.price-containers li:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
+}
+
+.price-containers .icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.price-containers h2 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.price-containers .price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #555;
+    margin: 8px 0;
+}
+
+.price-containers .sub-info {
+    font-size: 0.85rem;
+    color: #777;
+    margin: 10px 0 15px;
+    font-style: italic;
+}
+
+.price-containers .features {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.price-containers .features li {
+    margin: 5px 0;
+    color: #333;
+    font-size: 0.9rem;
+    position: relative;
+    padding-left: 22px;
+}
+
+.price-containers .features li::before {
+    content: "✔"; /* Checkmark for features */
+    color: #4caf50;
+    font-size: 0.9rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.price-containers .select-plan {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    color: #fff;
+    background: linear-gradient(90deg, #4caf50, #43a047);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.price-containers .basic-plan .select-plan {
+    background: linear-gradient(90deg, #007bff, #0056b3);
+}
+
+.price-containers .dev-plan .select-plan {
+    background: linear-gradient(90deg, #ff5722, #e64a19);
+}
+
+.price-containers .select-plan:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
