@@ -1,10 +1,10 @@
 // List of school objects (as an example)
 const schools = [
-    { name: 'Harvard University', zip: '02138', image: 'harvard.jpg', alt: 'Harvard University' },
-    { name: 'Stanford University', zip: '94305', image: 'stanford.jpg', alt: 'Stanford University' },
-    { name: 'Massachusetts Institute of Technology', zip: '02139', image: 'mit.jpg', alt: 'MIT' },
-    { name: 'University of California, Berkeley', zip: '94720', image: 'berkeley.jpg', alt: 'UC Berkeley' },
-    { name: 'Princeton University', zip: '08544', image: 'princeton.jpg', alt: 'Princeton University' },
+    { name: 'Harvard University', zip: '02138'},
+    { name: 'Stanford University', zip: '94305'},
+    { name: 'Massachusetts Institute of Technology', zip: '02139'},
+    { name: 'University of California, Berkeley', zip: '94720'},
+    { name: 'Princeton University', zip: '08544'},
 ];
 
 // Function to search for schools from the static list based on input query
@@ -49,28 +49,30 @@ function createResultItem(school) {
     const resultItem = document.createElement("div");
     resultItem.className = "result-item";
 
-    const img = createImageElement(school);
-    resultItem.appendChild(img);
-
     const name = document.createElement("h3");
     name.innerText = school.name;
     resultItem.appendChild(name);
 
+    // Add event listener for clicking on the result item
+    resultItem.addEventListener('click', () => {
+        showSchoolDetails(school); // Show details of the selected school
+    });
+
     return resultItem;
 }
 
-// Create image element with fallback logic
-function createImageElement(school) {
-    const img = document.createElement("img");
-    img.src = school.image || "placeholder.jpg"; // Default to placeholder image if no image
-    img.alt = school.alt || `Image of ${school.name} not available`; // Provide alt text or fallback message
+// Function to show more details about the selected school
+function showSchoolDetails(school) {
+    const selectedSchool = document.getElementById('selected');  // Get the div to display details
 
-    // If the image is a placeholder, modify its alt text
-    if (img.src === "placeholder.jpg") {
-        img.alt = `No image available for ${school.name}`;  // Custom alt text for placeholder image
-    }
+    // Add the 'show' class to make the div visible with transition
+    selectedSchool.classList.add('show');
 
-    return img;
+    // Display the school details in the selectedSchool div
+    selectedSchool.innerHTML = `
+        <h2>${school.name}</h2>
+        <p>Zip Code: ${school.zip}</p>
+    `;
 }
 
 // Debounced search input to limit API calls
@@ -116,5 +118,17 @@ searchInput.addEventListener("focus", () => {
     const resultsContainer = document.getElementById("searchResults");
     if (resultsContainer.innerHTML !== "") {
         resultsContainer.style.display = "block"; // Show results when focus is back
+    }
+});
+
+// Close the #selected div when clicking outside of it
+document.addEventListener('click', (event) => {
+    const selectedSchool = document.getElementById('selected');
+    const searchResults = document.getElementById('searchResults');
+    const searchInput = document.getElementById('searchInput');
+    
+    // Check if the clicked element is not inside the #selected div or search result container
+    if (!selectedSchool.contains(event.target) && !searchResults.contains(event.target) && event.target !== searchInput) {
+        selectedSchool.classList.remove('show'); // Hide the #selected div
     }
 });
