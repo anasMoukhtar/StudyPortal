@@ -1,22 +1,18 @@
-// sign up button click
-function signUpButtonClick(){
-    window.open('./Sign-up/sign-up.html','_blank')
-}
+// List of school objects (as an example)
+const schools = [
+    { name: 'Harvard University', zip: '02138', image: 'harvard.jpg', alt: 'Harvard University' },
+    { name: 'Stanford University', zip: '94305', image: 'stanford.jpg', alt: 'Stanford University' },
+    { name: 'Massachusetts Institute of Technology', zip: '02139', image: 'mit.jpg', alt: 'MIT' },
+    { name: 'University of California, Berkeley', zip: '94720', image: 'berkeley.jpg', alt: 'UC Berkeley' },
+    { name: 'Princeton University', zip: '08544', image: 'princeton.jpg', alt: 'Princeton University' },
+];
 
-// Helper function to fetch schools from a local JSON file
-async function fetchSchools(query) {
-    try {
-        const response = await fetch("schools.json");
-        const schools = await response.json();
-        
-        // Filter schools based on the search query
-        return schools.filter(school =>
-            school.name.toLowerCase().includes(query.toLowerCase())
-        );
-    } catch (error) {
-        console.error("Error fetching schools:", error);
-        return [];
-    }
+// Function to search for schools from the static list based on input query
+function searchSchools(query) {
+    return schools.filter(school =>
+        school.name.toLowerCase().includes(query.toLowerCase()) ||
+        school.zip.includes(query)
+    );
 }
 
 // Function to display results in the search container
@@ -64,7 +60,6 @@ function createResultItem(school) {
 }
 
 // Create image element with fallback logic
-// Create image element with fallback logic
 function createImageElement(school) {
     const img = document.createElement("img");
     img.src = school.image || "placeholder.jpg"; // Default to placeholder image if no image
@@ -90,8 +85,8 @@ function debounce(func, delay) {
 // Search handler for input event
 async function handleSearchInput(event) {
     const query = event.target.value;
-    const schools = await fetchSchools(query);
-    displayResults(schools);
+    const results = searchSchools(query);
+    displayResults(results);
 }
 
 // Event listener for input field
@@ -103,8 +98,8 @@ searchInput.addEventListener("input", debouncedSearch);
 searchInput.addEventListener("keypress", async (event) => {
     if (event.key === "Enter") {
         const query = searchInput.value;
-        const schools = await fetchSchools(query);
-        displayResults(schools);
+        const results = searchSchools(query);
+        displayResults(results);
     }
 });
 

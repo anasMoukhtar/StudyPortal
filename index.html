@@ -28,9 +28,12 @@
         </div>
     </nav>
     <div class="search-school">
-        <input type="search" id="searchInput" placeholder="Enter school name or zip...">
+        <input type="text" id="searchInput" aria-label="Search school by name or zip" placeholder="Enter school name or zip...">
+        <button onclick="fetchSchools(query)" id="SearchButton" aria-label="Search button">
+            <ion-icon name="search-outline"></ion-icon></button>
     </div>
     <div id="searchResults"></div>
+
     <footer>
         <ul>
             <li><ion-icon name="logo-discord"></ion-icon></li>
