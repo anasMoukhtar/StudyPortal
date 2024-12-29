@@ -90,6 +90,63 @@ nav {
     box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4);
 }
 
+/* Search Results Container */
+#searchResults {
+    display: none; 
+    position: absolute;
+    top: 180px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    width: fit-content; 
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: px;
+    margin-top: 5px;
+    z-index: 999;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Show results smoothly */
+#searchResults.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Result Items */
+.result-item {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.result-item:hover {
+    background-color: #f5f5f5;
+}
+
+.result-item img {
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.result-item h3 {
+    margin: 0;
+}
+
+/* No results found */
+.no-result-item {
+    padding: 10px;
+    text-align: center;
+    color: #777;
+}
+
 /* Footer */
 footer {
     position: fixed;

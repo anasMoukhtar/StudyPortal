@@ -1,12 +1,12 @@
 [
     {
         "name": "Springfield High School",
-        "image": "school-springfield.jpg",
+        "image": "img/school-springfield.jpg",
         "alt": "Front view of Springfield High School"
     },
     {
         "name": "Riverside Elementary School",
-        "image": "school-riverside.jpg",
+        "image": "img/school-riverside.jpg",
         "alt": "Playground and entrance of Riverside Elementary School"
     },
     {
