@@ -1,7 +1,7 @@
 import './Styles/footer.css'
 import React from 'react';
-import { IonIcon } from '@ionic/react';
-import { logoIonic } from 'ionicons/icons';
+// import { IonIcon } from '@ionic/react';
+// import { logoIonic } from 'ionicons/icons';
 function Footer(){
     return(
         <>
