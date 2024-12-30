@@ -1,6 +1,9 @@
 function signUpButtonClick(){
     window.location.href = "./Sign-up/sign-up.html";
 }
+function signInButtonClick(){
+    window.location.href = "./Sign-up/signIn.html";
+}
 // List of school objects (as an example)
 const schools = [
     { name: 'Harvard University', zip: '02138'},
