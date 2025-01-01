@@ -2,7 +2,7 @@ function signUpButtonClick(){
     window.location.href = "./Sign-up/sign-up.html";
 }
 function signInButtonClick(){
-    window.location.href = "./Sign-up/signIn.html";
+    window.location.href = "./Sign-In/sign-in.html";
 }
 // List of school objects (as an example)
 const schools = [
