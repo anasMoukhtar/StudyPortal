@@ -45,12 +45,14 @@ h1 {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
-#name, #email, #password :focus{
+
+#name, #email, #password :focus {
     outline: none;
 }
+
 #confirm-password:focus {
-    outline: none; 
-    border: none;  
+    outline: none;
+    border: none;
 }
 
 #submit {
@@ -80,4 +82,9 @@ h1 {
 
 .account-link a:hover {
     text-decoration: underline;
+}
+
+.error-message, .success-message {
+    text-align: center;
+    margin-top: 10px;
 }

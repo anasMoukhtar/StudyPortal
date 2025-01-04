@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./about_styles.css">
-    <script src="/about/about_script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <title>About Us</title>
-    <link rel="icon" href="websitetest2upload\img\favicon-16x16.png" type="image/png"> 
-    <link rel="shortcut icon" href="websitetest2upload\img\favicon-16x16.png" type="image/png">
+    <link rel="icon" href="websitetest2upload/img/favicon-16x16.png" type="image/png">
 </head>
 <body>
     <nav>
@@ -27,28 +26,41 @@
             <button class="signin">Sign In</button>
         </div>
     </nav>
-    <main>
-        <header class="about-header">
+
+    <header class="about-header">
+        <div data-aos="fade-up">
             <h1>About Us</h1>
             <p>
-                Welcome to studyportal.pro, the ultimate platform designed to help students connect, collaborate, and achieve their academic goals! We believe education is more than just assignments and exams—it’s about building communities and fostering growth. That’s why we’ve created a space where students can join their school communities, access powerful AI homework tools, and find expert tutors. Whether you’re tackling a tricky math problem, refining your essay, or just looking for academic support, our platform has everything you need to succeed.
+                Welcome to StudyPortal.pro, the ultimate platform for students to connect, collaborate, and achieve academic success. Dive into our story, vision, and offerings!
             </p>
-        </header>
-        <section class="about-content">
-            <article>
-                <h2>What We Offer</h2>
-                <ul>
-                    <li>AI Homework Tools: Simplify your studies with cutting-edge tools tailored for every subject.</li>
-                    <li>Tutors on Demand: Connect with experienced tutors who can guide you through any challenge.</li>
-                    <li>Community Access: Join your school’s community to share knowledge, resources, and support.</li>
-                </ul>
-            </article>
-            <article>
-                <h2>Conclusion</h2>
-                <p>At studyportal.pro, we aim to make learning accessible, innovative, and engaging. Together, we can unlock your full potential.</p>
-            </article>
+        </div>
+    </header>
+
+    <main>
+        <section class="our-mission" data-aos="fade-right">
+            <h2>Our Mission</h2>
+            <p>
+                At StudyPortal, we aim to make learning accessible and engaging. Our mission is to empower students with tools, resources, and a community to achieve their goals effortlessly.
+            </p>
         </section>
-    </main>           
+
+        <section class="features" data-aos="fade-left">
+            <h2>What We Offer</h2>
+            <ul>
+                <li>AI Homework Assistance</li>
+                <li>Expert Tutoring Services</li>
+                <li>Community Support and Resources</li>
+            </ul>
+        </section>
+
+        <section class="why-choose-us" data-aos="fade-up">
+            <h2>Why Choose Us?</h2>
+            <p>
+                With cutting-edge technology and a focus on collaboration, StudyPortal.pro is your partner in academic excellence. Join thousands of students in transforming education!
+            </p>
+        </section>
+    </main>
+
     <footer>
         <ul>
             <li><ion-icon name="logo-discord"></ion-icon></li>
@@ -57,7 +69,10 @@
             <li><ion-icon name="logo-reddit"></ion-icon></li>
         </ul>
     </footer>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init(); // Initialize animations on scroll
+    </script>
 </body>
 </html>

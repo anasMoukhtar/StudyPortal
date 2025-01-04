@@ -4,9 +4,17 @@ document.getElementById('signup-form').addEventListener('submit', async function
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
     
-    if (!name || !email || !password) {
+    // Check if all fields are filled
+    if (!name || !email || !password || !confirmPassword) {
         showError('All fields are required!');
+        return;
+    }
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+        showError('Passwords do not match!');
         return;
     }
 
