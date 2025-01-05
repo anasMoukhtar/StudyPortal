@@ -47,16 +47,9 @@ nav {
 }
 
 .left-section ul li a:hover {
-    color: #fcb69f;
+    color: #4caf50;
     text-decoration: underline;
 }
-
-.left-section ul li a.active {
-    color: #fcb69f;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
 .right-section {
     display: flex;
     align-items: center;
