@@ -3,8 +3,9 @@ body {
     margin: 0;
     padding: 0;
     overflow-y: scroll;
-    background-image: linear-gradient(to bottom right, #d3ba8e, white);
+    background-image: radial-gradient(circle, #e6f7ff, white);
     /*Other designs
+    background-image: linear-gradient(to bottom right, #d3ba8e, white);
     background-image: linear-gradient(to bottom, #b2e5fc, #a7e0c1, white);
     background-image: radial-gradient(circle, #e6f7ff, white);
     background-image: linear-gradient(to bottom, #e0f2db, white);
