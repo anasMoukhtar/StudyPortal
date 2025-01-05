@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - StudyPortal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>StudyPortal</h1>
+            <div class="user-info">
+                <p id="userName" style="margin: 10px;">Welcome, User</p>
+                <img src="./pfp.png" alt="User Avatar" class="avatar">
+                <div class="dropdown">
+                    <button class="dropdown-toggle" type="button" data-toggle="dropdown">
+                        <a href="#" class="dropdown-toggle"><i class="fas fa-angle-down"></i></a>
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">profile</a></li>
+                      <li><a href="#">settings</a></li>
+                      <li><a href="#">log out</a></li>
+                      <li class="divider"></li>
+                    </ul>
+                  </div>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" class="active">Dashboard</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Assignments</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Messages</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="recent-courses">
+            <h2>Recently Accessed Courses</h2>
+            <div class="course-list">
+                <a href="#" class="course-item">
+                    <h3>Introduction to HTML</h3>
+                    <p>Last Accessed: 2 days ago</p>
+                </a>
+                <a href="#" class="course-item">
+                    <h3>Basic CSS Styling</h3>
+                    <p>Last Accessed: 1 week ago</p>
+                </a>
+            </div>
+        </section>
+        <section class="upcoming-assignments">
+            <h2>Upcoming Assignments</h2>
+            <div class="assignment-list">
+                <div class="assignment-item">
+                    <h3>HTML Assignment 1</h3>
+                    <p>Due: October 15, 2023</p>
+                </div>
+                <div class="assignment-item">
+                    <h3>CSS Assignment 2</h3>
+                    <p>Due: October 22, 2023</p>
+                </div>
+            </div>
+        </section>
+        <section class="progress-tracking">
+            <h2>Progress Tracking</h2>
+            <div class="progress-section">
+                <p>HTML Course: 75% Completed</p>
+                <div class="progress-bar" style="width: 75%;"></div>
+            </div>
+            <div class="progress-section">
+                <p>CSS Course: 50% Completed</p>
+                <div class="progress-bar" style="width: 50%;"></div>
+            </div>
+        </section>
+        <section class="quick-links">
+            <h2>Quick Links</h2>
+            <div class="links-list">
+                <a href="#" class="quick-link">Course Catalog</a>
+                <a href="#" class="quick-link">Study Resources</a>
+                <a href="#" class="quick-link">Discussion Forums</a>
+                <a href="#" class="quick-link">Library</a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 StudyPortal. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
