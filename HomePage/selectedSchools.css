@@ -1,0 +1,20 @@
+#selected {
+    display: none;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    border-style: none;
+    background-color: rgb(229, 236, 241);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: display 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+#selected.show {
+    display: block;
+    opacity: 1;
+}
