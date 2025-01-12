@@ -8,11 +8,11 @@ const path = require('path');
 
 const app = express();
 const URI = process.env.MONGODBURI;
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(`../`)));
 
 // MongoDB Connection
 mongoose.connect(URI)
@@ -73,7 +73,7 @@ app.post('/data', async (req, res) => {
 
 // Welcome page (serving index.html)
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, '../HomePage/index.html'));
 });
 
 // Start the server
