@@ -3,50 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Finder - StudyPortal</title>
     <link rel="stylesheet" href="../commonFiles/style.css">
     <link rel="stylesheet" href="results.css">
-    <link rel="stylesheet" href="../commonFiles/scrollBar-styling.css">
     <link rel="stylesheet" href="selectedSchools.css">
-    <script src="../commonFiles/script.js" defer></script>
-    <title>School Finder</title>
-    <link rel="icon" href="../img/favicon-16x16.png" type="image/png"> 
-    <link rel="shortcut icon" href="../img/favicon-16x16.png" type="image/png">
-    <link rel="stylesheet" href="../commonFiles/style.css">
+    <link rel="icon" href="../img/favicon-16x16.png" type="image/png">
 </head>
 <body>
-    <nav>
+    <nav role="navigation">
         <div class="left-section">
             <img src="../img/meteciclelogo.png" alt="Metecicle Logo">
             <ul>
-                <li><a class="active" href="index.html">Home</a></li>
-                <li><a href="../Plans/plans.html">Pricing</a></li>
-                <li><a href="../about/about.html">About</a></li>
-                <li><a href="#">Support</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="../DashBoard/index.html">Dashboard</a></li>
+                <li><a href="index.html" class="active" aria-label="Home">Home</a></li>
+                <li><a href="../Plans/plans.html" aria-label="Pricing">Pricing</a></li>
+                <li><a href="../about/about.html" aria-label="About">About</a></li>
+                <li><a href="#" aria-label="Support">Support</a></li>
+                <li><a href="#" aria-label="Contact">Contact</a></li>
+                <li><a href="../DashBoard/index.html" aria-label="Dashboard">Dashboard</a></li>
             </ul>
         </div>
         <div class="right-section">
-            <button onclick="signUpButtonClick()" class="signup">Sign Up</button>
-            <button onclick="signInButtonClick()" class="signin">Sign In</button>
+            <button onclick="signUpButtonClick()" class="signup" aria-label="Sign Up">Sign Up</button>
+            <button onclick="signInButtonClick()" class="signin" aria-label="Sign In">Sign In</button>
         </div>
     </nav>
     <div class="search-school">
         <input type="text" id="searchInput" aria-label="Search school by name or zip" placeholder="Enter school name or zip...">
-        <button onclick="fetchSchools(query)" id="SearchButton" aria-label="Search button">
-            <ion-icon name="search-outline"></ion-icon></button>
+        <button id="SearchButton" aria-label="Search">
+            <ion-icon name="search-outline"></ion-icon>
+        </button>
     </div>
-    <div id="searchResults"></div>
+    <div id="searchResults" aria-live="polite"></div>
     <div id="selected"></div>
     <footer>
         <ul>
-            <li><ion-icon name="logo-discord"></ion-icon></li>
-            <li><ion-icon name="logo-github"></ion-icon></li>
-            <li><ion-icon name="logo-youtube"></ion-icon></li>
-            <li><ion-icon name="logo-reddit"></ion-icon></li>
+            <li><ion-icon name="logo-discord" aria-label="Discord"></ion-icon></li>
+            <li><ion-icon name="logo-github" aria-label="GitHub"></ion-icon></li>
+            <li><ion-icon name="logo-youtube" aria-label="YouTube"></ion-icon></li>
+            <li><ion-icon name="logo-reddit" aria-label="Reddit"></ion-icon></li>
         </ul>
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
