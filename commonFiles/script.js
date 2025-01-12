@@ -1,16 +1,10 @@
-function signUpButtonClick(){
-    window.location.href = "./Sign-up/sign-up.html";
-}
-function signInButtonClick(){
-    window.location.href = "./Sign-In/sign-in.html";
-}
 // List of school objects (as an example)
 const schools = [
-    { name: 'Harvard University', zip: '02138'},
-    { name: 'Stanford University', zip: '94305'},
-    { name: 'Massachusetts Institute of Technology', zip: '02139'},
-    { name: 'University of California, Berkeley', zip: '94720'},
-    { name: 'Princeton University', zip: '08544'},
+    { name: 'Harvard University', zip: '02138' },
+    { name: 'Stanford University', zip: '94305' },
+    { name: 'Massachusetts Institute of Technology', zip: '02139' },
+    { name: 'University of California, Berkeley', zip: '94720' },
+    { name: 'Princeton University', zip: '08544' },
 ];
 
 // Function to search for schools from the static list based on input query
