@@ -21,7 +21,7 @@ document.getElementById('signup-form').addEventListener('submit', async function
     const payload = { name, email, password };
 
     try {
-        const response = await fetch('http://localhost:3000/data', {
+        const response = await fetch('http://localhost:3000/sign-up', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

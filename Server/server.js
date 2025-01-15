@@ -30,7 +30,7 @@ app.use(express.json());
 staticFiles.forEach((setupStaticFile) => setupStaticFile(app));
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODBURI)
+mongoose.connect(URI)
     .then(() => console.log('MongoDB connection established'))
     .catch((err) => {
         console.error('MongoDB connection error:', err);
