@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../commonFiles/style.css">
     <link rel="stylesheet" href="./about_styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <title>About Us</title>
@@ -14,17 +15,17 @@
         <div class="left-section">
             <img src="../img/meteciclelogo.png" alt="Metecicle Logo">
             <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../plans.html">Pricing</a></li>
-                <li><a href="./index.html" class="active">About</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/Pricing">Pricing</a></li>
+                <li><a href="/about" class="active">About</a></li>
                 <li><a href="#">Support</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="#">More</a></li>
+                <li><a href="/DashBoard/">DashBoard</a></li>
             </ul>
         </div>
         <div class="right-section">
-            <button onclick="signUpButtonClick()" class="signup">Sign Up</button>
-            <button class="signin">Sign In</button>
+            <button id="signUpButton" class="signup">Sign Up</button>
+            <button id="signInButton" class="signin">Sign In</button>
         </div>
     </nav>
 
@@ -70,10 +71,13 @@
             <li><ion-icon name="logo-reddit"></ion-icon></li>
         </ul>
     </footer>
-
+    <script src="../commonFiles/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init(); // Initialize animations on scroll
+    <script nonce="<%= nonce %>">
+        AOS.init();
     </script>
+
 </body>
 </html>

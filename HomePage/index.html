@@ -3,48 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../commonFiles/Active.css">
     <link rel="stylesheet" href="../commonFiles/style.css">
     <link rel="stylesheet" href="results.css">
     <link rel="stylesheet" href="selectedSchools.css">
-    <script src="../commonFiles/script.js" defer></script>
+    
     <title>School Finder</title>
     <link rel="icon" href="../img/favicon-16x16.png" type="image/png">
 </head>
 <body>
+    <!-- Navigation Bar -->
     <nav>
         <div class="left-section">
             <img src="../img/meteciclelogo.png" alt="Metecicle Logo">
             <ul>
-                <li><a class="active" href="index.html">Home</a></li>
-                <li><a href="../Plans/plans.html">Pricing</a></li>
-                <li><a href="../about/about.html">About</a></li>
+                <li><a  class="active" href="/">Home</a></li>
+                <li><a href="/Pricing">Pricing</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="#">Support</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="../DashBoard/index.html">Dashboard</a></li>
+                <li><a href="/DashBoard">DashBoard</a></li>
             </ul>
         </div>
         <div class="right-section">
-            <button class="signup"><a href="./Register">Sign Up</a></button>
-            <button class="signin"><a href="./Login">Sign In</a></button>
+            <button id="signUpButton" class="signup">Sign Up</button>
+            <button id="signInButton" class="signin">Sign In</button>
         </div>
     </nav>
+
+    <!-- Search Section -->
     <div class="search-school">
-        <input type="text" id="searchInput" aria-label="Search school by name or zip" placeholder="Enter school name or zip...">
-        <button onclick="fetchSchools(query)" id="SearchButton" aria-label="Search button">
+        <input 
+            type="text" 
+            id="searchInput" 
+            aria-label="Search school by name or zip" 
+            placeholder="Enter school name or zip..." 
+        >
+        <button id="SearchButton" aria-label="Search button" onclick="fetchSchools()">
             <ion-icon name="search-outline"></ion-icon>
         </button>
     </div>
-    <div id="searchResults"></div>
-    <div id="selected"></div>
+
+    <!-- Search Results Section -->
+    <div id="searchResults" aria-live="polite"></div>
+
+    <!-- Selected Schools Section -->
+    <div id="selected" aria-live="polite"></div>
+
+    <!-- Footer -->
     <footer>
         <ul>
-            <li><ion-icon name="logo-discord"></ion-icon></li>
-            <li><ion-icon name="logo-github"></ion-icon></li>
-            <li><ion-icon name="logo-youtube"></ion-icon></li>
-            <li><ion-icon name="logo-reddit"></ion-icon></li>
+            <li><a href="#"><ion-icon name="logo-discord"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-github"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-youtube"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-reddit"></ion-icon></a></li>
         </ul>
     </footer>
+
+    <!-- Ionicons Scripts -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../commonFiles/script.js" defer></script>
 </body>
 </html>
