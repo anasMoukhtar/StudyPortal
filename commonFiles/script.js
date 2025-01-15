@@ -6,7 +6,6 @@ const schools = [
     { name: 'University of California, Berkeley', zip: '94720' },
     { name: 'Princeton University', zip: '08544' },
 ];
-
 // Function to search for schools from the static list based on input query
 function searchSchools(query) {
     return schools.filter(school =>

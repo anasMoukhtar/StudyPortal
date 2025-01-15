@@ -1,13 +1,21 @@
-const { default: mongoose } = require('mongoose');
+const mongoose = require('mongoose');
 
-const express = require('express');
-const Schema = mongoose.Schema;
-const clientSchema = new Schema({
-    name: String,
-    email: String,
-    password: String,})
+const clientSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+});
 
+const Client = mongoose.model('Client', clientSchema);
 
-
-clientModel = mongoose.model('Client', clientSchema)
-module.exports = clientModel
+module.exports = Client;

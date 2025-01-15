@@ -8,9 +8,7 @@
     <link rel="stylesheet" href="selectedSchools.css">
     <script src="../commonFiles/script.js" defer></script>
     <title>School Finder</title>
-    <link rel="icon" href="../img/favicon-16x16.png" type="image/png"> 
-    <link rel="shortcut icon" href="../img/favicon-16x16.png" type="image/png">
-    <link rel="stylesheet" href="../commonFiles/style.css">
+    <link rel="icon" href="../img/favicon-16x16.png" type="image/png">
 </head>
 <body>
     <nav>
@@ -26,14 +24,15 @@
             </ul>
         </div>
         <div class="right-section">
-            <button onclick="signUpButtonClick()" class="signup">Sign Up</button>
-            <button onclick="signInButtonClick()" class="signin">Sign In</button>
+            <button class="signup"><a href="./Register">Sign Up</a></button>
+            <button class="signin"><a href="./Login">Sign In</a></button>
         </div>
     </nav>
     <div class="search-school">
         <input type="text" id="searchInput" aria-label="Search school by name or zip" placeholder="Enter school name or zip...">
         <button onclick="fetchSchools(query)" id="SearchButton" aria-label="Search button">
-            <ion-icon name="search-outline"></ion-icon></button>
+            <ion-icon name="search-outline"></ion-icon>
+        </button>
     </div>
     <div id="searchResults"></div>
     <div id="selected"></div>
