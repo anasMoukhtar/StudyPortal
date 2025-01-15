@@ -1,3 +1,9 @@
+/*styling the word pricing*/
+.left-section ul li a.active {
+    color: #fcb69f;
+    font-weight: bold;
+    text-decoration: underline;
+}
 /* Price Containers */
 .price-containers {
     width: 100%;

@@ -1,4 +1,3 @@
-/* General Body */
 body {
     background-image: url('../img/logotest1.png');
     background-size: cover;
@@ -7,6 +6,7 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
+
 /* Navigation Bar */
 nav {
     display: flex;
@@ -15,6 +15,9 @@ nav {
     padding: 15px 20px;
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .left-section {
@@ -39,29 +42,39 @@ nav {
     text-decoration: none;
     font-size: 16px;
     color: #333;
-    transition: color 0.3s;
+    transition: color 0.3s ease-in-out;
 }
 
 .left-section ul li a:hover {
     color: #4caf50;
     text-decoration: underline;
 }
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
 .right-section button {
-    padding: 8px 12px;
-    border: 2px solid #333;
-    background-color: #fff;
-    color: #333;
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    background-color: #fcb69f;
+    color: #fff;
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
-    transition: transform 0.3s, background-color 0.3s;
+    transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
+}
+
+.right-section button.signup {
+    background-color: #4caf50;
 }
 
 .right-section button:hover {
     transform: scale(1.1);
-    background-color: #4caf50;
+    background-color: #333;
     color: #fff;
+    border-color: #fcb69f;
 }
 
 /* Search Box */
