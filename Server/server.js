@@ -1,33 +1,23 @@
 const express = require('express');
 const mongoose = require('mongoose');
-require('dotenv').config();
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
-const rateLimit = require('express-rate-limit');
-const routes = require('./route.js');
-const staticFiles = require('./staticFiles.js'); // Now an array of functions
+const routes = require('./route'); // Import the routes file
+const staticFiles = require('./staticFiles'); // Import the static files middleware
+require('dotenv').config();
+
 const app = express();
-const crypto = require('crypto');
 const URI = process.env.MONGODBURI;
 const port = process.env.PORT || 3000;
 
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // Limit each IP to 100 requests per windowMs
-});
-app.use('/data', limiter);
-
-// Security Middleware (without helmet)
-app.use((req, res, next) => {
-    res.locals.nonce = crypto.randomBytes(16).toString('base64'); // Generate nonce
-    next();
-});
-
+// Middleware
+app.use(express.json());  // For parsing application/json
+app.use(express.urlencoded({ extended: true }));  // For parsing application/x-www-form-urlencoded
 app.use(cors());
-app.use(express.json());
 
-// Serve static files
-staticFiles.forEach((setupStaticFile) => setupStaticFile(app));
+// Serve static files using staticFiles.js
+staticFiles(app);
 
 // MongoDB Connection
 mongoose.connect(URI)
@@ -37,10 +27,10 @@ mongoose.connect(URI)
         process.exit(1);
     });
 
-// Routes
+// Use the routes defined in routes.js
 app.use('/', routes);
 
-// 404 Handler
+// 404 Handler for undefined routes
 app.use((req, res) => {
     res.status(404).json({ message: 'Route not found' });
 });

@@ -4,9 +4,7 @@ const Client = require('./model/clients');
 const bcrypt = require('bcrypt');
 const path = require('path');
 const fs = require('fs');
-const ejs = require('ejs');
-const app = express(); // Define app here
-
+const Messages = require('./model/messages'); // Ensure this path is correct
 // POST /sign-up: Handle Sign-Up requests
 router.post('/sign-up', async (req, res) => {
     const { name, email, password } = req.body;
@@ -71,44 +69,67 @@ router.get('/data', async (req, res) => {
     }
 });
 
-// --- HTML Page Routes ---
-// Serve Home Page
+// POST /api/messages: Handle contact form submissions
+router.post('/api/messages', async (req, res) => {
+    console.log('Request received:', req.body); // Log the incoming request body
+
+    const { name, email, message } = req.body;
+
+    if (!name || !email || !message) {
+        console.log('Validation failed: Missing fields');
+        return res.status(400).json({ message: 'Name, email, and message are required!' });
+    }
+
+    try {
+        const newMessage = new Messages({ name, email, message });
+        await newMessage.save();
+        console.log('Message saved successfully:', newMessage); // Log the saved message
+        res.status(200).json({ message: 'Message sent successfully!' });
+    } catch (err) {
+        console.error('Error saving message:', err); // Log the error
+        res.status(500).json({ message: 'Error saving your message.' });
+    }
+});
+
+// API Route: Retrieve all messages
+router.get('/api/messages', async (req, res) => {
+    try {
+        const messages = await Messages.find();
+        res.json({ messages });
+    } catch (err) {
+        console.error('Error fetching messages:', err);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// Serve static HTML pages (Home, About, Contact, etc.)
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../HomePage', 'index.html'));
 });
-
-router.get('/about', (req, res) => {
-    const nonce = res.locals.nonce || ''; // Default to empty if not set
-
-    // Read and render the `about.html` file
-    const aboutPage = fs.readFileSync(path.join(__dirname, '../about', 'about.html'), 'utf8');
-    const renderedHtml = ejs.render(aboutPage, { nonce });
-
-    res.send(renderedHtml);
+router.get('/messages', (req, res) => {
+    res.sendFile(path.join(__dirname, '../messages', 'messages.html'));
 });
-// Serve Pricing Page
-router.get('/Pricing', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Plans', 'plans.html'));
-});
-
-// Serve Sign-Up Page
-router.get('/Register', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Sign-up', 'sign-up.html'));
-});
-
-// Serve Sign-In Page
-router.get('/Login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Sign-In', 'sign-in.html'));
-});
-
-// Serve Dashboard Page (after successful login)
 router.get('/Dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, '../Dashboard', 'index.html'));
 });
-
-// Handle undefined routes (404)
+router.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, '../about', 'about.html'));
+});
+router.get('/Contact', (req, res) => {
+    res.sendFile(path.join(__dirname, '../Contact', 'contact.html'));
+});
+router.get('/Pricing', (req, res) => {
+    res.sendFile(path.join(__dirname, '../Plans', 'plans.html'));
+});
+router.get('/Register', (req, res) => {
+    res.sendFile(path.join(__dirname, '../Sign-up', 'sign-up.html'));
+});
+router.get('/Login', (req, res) => {
+    res.sendFile(path.join(__dirname, '../Sign-In', 'sign-in.html'));
+});
+// 404 Handler for undefined routes
 router.use((req, res) => {
-    res.status(404).json({ message: 'Route not found' });
+    res.status(404).sendFile(path.join(__dirname, '/error.html'));
 });
 
 module.exports = router;
