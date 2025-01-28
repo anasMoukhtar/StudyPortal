@@ -1,0 +1,25 @@
+{
+    "name": "websitetest2-main",
+    "version": "1.0.0",
+    "main": "index.js",
+"dependencies": {
+    "express": "^4.17.1",                    
+    "dotenv": "^10.0.0",                      
+    "mongoose": "^7.0.0",                     
+    "cors": "^2.8.5",                        
+    "bcrypt": "^5.0.1"                  
+  },
+    "devDependencies": {
+      "nodemon": "^2.0.7"
+    },
+  
+    "scripts": {
+      "start": "node Server/server.js",
+      "dev": "nodemon Server/server.js"         
+    },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "description": ""
+}
