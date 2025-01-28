@@ -104,28 +104,28 @@ router.get('/api/messages', async (req, res) => {
 
 // Serve static HTML pages (Home, About, Contact, etc.)
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../HomePage', 'index.html'));
-});
-router.get('/messages', (req, res) => {
-    res.sendFile(path.join(__dirname, '../messages', 'messages.html'));
-});
-router.get('/Dashboard', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Dashboard', 'index.html'));
+    res.sendFile(path.join(__dirname, '../public/HomePage', 'index.html'));
 });
 router.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, '../about', 'about.html'));
+    res.sendFile(path.join(__dirname , '../public/about' , 'about.html'));
+});
+router.get('/messages', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/messages', 'messages.html'));
+});
+router.get('/Dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/Dashboard', 'index.html'));
 });
 router.get('/Contact', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Contact', 'contact.html'));
+    res.sendFile(path.join(__dirname, '../public/Contact', 'contact.html'));
 });
 router.get('/Pricing', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Plans', 'plans.html'));
+    res.sendFile(path.join(__dirname, '../public/Plans', 'plans.html'));
 });
 router.get('/Register', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Sign-up', 'sign-up.html'));
+    res.sendFile(path.join(__dirname, '../public/Sign-up', 'sign-up.html'));
 });
 router.get('/Login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Sign-In', 'sign-in.html'));
+    res.sendFile(path.join(__dirname, '../public/Sign-In', 'sign-in.html'));
 });
 // 404 Handler for undefined routes
 router.use((req, res) => {
