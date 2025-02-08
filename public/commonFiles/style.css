@@ -5,6 +5,8 @@ body {
     background-position: center;
     margin: 0;
     font-family: Arial, sans-serif;
+    background-attachment: fixed;
+    min-height: 110vh;
 }
 
 /* Navigation Bar */
@@ -207,22 +209,41 @@ footer ul li ion-icon:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .search-school {
+        justify-self: center;
+        margin-left: 11%;
+    }
+    
     .search-school input {
-        width: 80%;
+        min-width: 275px;
     }
     
     .left-section ul {
-        flex-direction: column;
+        flex-direction: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
+        margin-right: 35px;
     }
 
     nav {
         flex-direction: column;
         align-items: center;
+        justify-self: center;
     }
 
     .right-section {
         margin-top: 15px;
+    }
+
+    #logo {
+        margin-left: 22px;
+    }
+
+    .footer ul {
+        display: flex;
+    }
+
+    body {
+        background-attachment: scroll;
     }
 }
