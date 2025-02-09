@@ -10,6 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // When Sign In button is clicked, redirect to the sign-in page
     signInButton.addEventListener('click', () => {
-        window.location.href = '/Login';  // Assuming '/Login' is your sign-in page
+        window.location.href = '/Login';  
     });
 });

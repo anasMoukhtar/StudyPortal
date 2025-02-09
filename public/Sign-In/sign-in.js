@@ -11,7 +11,8 @@ document.getElementById('sign-in-form').addEventListener('submit', async functio
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email, password }),  // Send raw password to server
+            body: JSON.stringify({ email, password }),
+            credentials: 'include'
         });
 
         const result = await response.json();

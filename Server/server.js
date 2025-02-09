@@ -2,27 +2,31 @@ const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 require('dotenv').config({ path: require('path').join(__dirname, '/.env') });
 const cors = require('cors');
-const routes = require('./route'); // Import the routes file
-const staticFiles = require('./staticFiles'); // Import the static files middleware
+const routes = require('./route'); 
+const staticFiles = require('./staticFiles'); 
 
 const app = express();
 const URI = process.env.MONGODBURI;
-const PORT =  3000 || process.env.PORT;
+const PORT = process.env.PORT || 3000;
+
 app.use(bodyParser.json());
+app.use(cookieParser());  // Enable cookie parsing
+
 // Middleware
-app.use(helmet({
-    contentSecurityPolicy: false,
-}));
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(express.json());  
 app.use(express.urlencoded({ extended: true })); 
+
+// Allow cookies to be sent from frontend
 app.use(cors());
 
-// Serve static files using staticFiles.js
+// Serve static files
 staticFiles(app);
 
-// MongoDB Connection with improved error handling
+// MongoDB Connection with error handling
 mongoose.connect(URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -41,21 +45,20 @@ mongoose.connection.on('disconnected', () => {
     console.warn('MongoDB disconnected. Retrying...');
 });
 
-// Use the routes defined in routes.js
+// Use routes
 app.use('/', routes);
 
-// 404 Handler for undefined routes
+// 404 Handler
 app.use((req, res) => {
     res.status(404).json({ message: 'Route not found' });
 });
 
-// Global Error Handler
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ message: 'Internal server error', error: err.message });
 });
 
-// Graceful shutdown
 process.on('SIGINT', async () => {
     console.log('Shutting down server...');
     await mongoose.connection.close();
@@ -63,5 +66,4 @@ process.on('SIGINT', async () => {
     process.exit(0);
 });
 
-// Start the server
-app.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
