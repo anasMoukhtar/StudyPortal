@@ -17,11 +17,7 @@ app.use(helmet({
 }));
 app.use(express.json());  
 app.use(express.urlencoded({ extended: true })); 
-app.use(cors({
-    origin: ['https://Studyportal.pro'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+app.use(cors());
 
 // Serve static files using staticFiles.js
 staticFiles(app);
@@ -68,6 +64,4 @@ process.on('SIGINT', async () => {
 });
 
 // Start the server
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
+app.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
