@@ -1,31 +1,65 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 const Client = require('./model/clients');
 const bcrypt = require('bcryptjs');
 const path = require('path');
-const fs = require('fs');
+const authenticateToken = require('./Middleware/authMiddleware');
+const rateLimit = require('express-rate-limit');
+const csrf = require('csurf');
 
-// POST /sign-up: Handle Sign-Up requests
+const SECRET_KEY = process.env.JWT_SECRET;
+const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET;
+
+// Validate required environment variables
+if (!SECRET_KEY || !REFRESH_TOKEN_SECRET) {
+    console.error('JWT_SECRET or REFRESH_TOKEN_SECRET is missing in environment variables.');
+    process.exit(1);
+}
+
+// Rate limiting for login route
+const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 5, // limit each IP to 5 requests per windowMs
+    message: 'Too many login attempts, please try again later.'
+});
+
+// CSRF protection (only for form-based pages)
+const csrfProtection = csrf({ cookie: true });
+
+// Function to generate JWT token
+const generateToken = (user) => {
+    return jwt.sign(
+        { userId: user._id, email: user.email, role: 'student' },
+        SECRET_KEY,
+        { expiresIn: '1h' } // Token expires in 1 hour
+    );
+};
+
+// Function to generate refresh token
+const generateRefreshToken = (user) => {
+    return jwt.sign(
+        { userId: user._id },
+        REFRESH_TOKEN_SECRET,
+        { expiresIn: '7d' } // Refresh token expires in 7 days
+    );
+};
+
+// **SIGN-UP Route (CSRF Removed)**
 router.post('/sign-up', async (req, res) => {
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
         return res.status(400).json({ message: 'Name, email, and password are required!' });
-    } else if (!/^[a-zA-Z]*$/.test(name)) {
-        return res.status(400).json({ 
-            status: 'FAILED',
-            message: 'Name should only contain alphabetic characters!'
-        });
-    } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-        return res.status(400).json({ 
-            status: 'FAILED',
-            message: 'Invalid email format!'
-        });
-    } else if (password.length < 8) {
-        return res.status(400).json({ 
-            status: 'FAILED',
-            message: 'Password must be at least 8 characters long!'
-        });
+    }
+    if (!/^[a-zA-Z\s]+$/.test(name)) {
+        return res.status(400).json({ message: 'Name should only contain alphabetic characters and spaces!' });
+    }
+    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+        return res.status(400).json({ message: 'Invalid email format!' });
+    }
+    if (password.length < 8 || !/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])/.test(password)) {
+        return res.status(400).json({ message: 'Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character!' });
     }
 
     try {
@@ -45,8 +79,8 @@ router.post('/sign-up', async (req, res) => {
     }
 });
 
-// POST /sign-in: Handle Sign-In requests
-router.post('/sign-in', async (req, res) => {
+// **SIGN-IN Route (CSRF Removed)**
+router.post('/sign-in', loginLimiter, async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -61,73 +95,101 @@ router.post('/sign-in', async (req, res) => {
         }
 
         const isPasswordValid = await bcrypt.compare(password, client.password);
-
         if (!isPasswordValid) {
             return res.status(401).json({ message: 'Incorrect email or password' });
         }
 
+        // Generate JWT token and refresh token
+        const token = generateToken(client);
+        const refreshToken = generateRefreshToken(client);
+
+        // Set tokens as HTTP-only cookies
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'Strict',
+            maxAge: 3600000 // 1 hour
+        });
+
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'Strict',
+            maxAge: 604800000 // 7 days
+        });
+
         res.status(200).json({ message: 'Login successful' });
+
     } catch (err) {
         console.error('Error during sign-in:', err);
         res.status(500).json({ message: 'Server error' });
     }
 });
 
-// GET /data - Retrieve all clients (just for testing or admin purposes)
-router.get('/data', async (req, res) => {
-    try {
-        const data = await Client.find();
-        res.json(data);
-    } catch (err) {
-        console.error('Error retrieving data:', err);
-        res.status(500).json({ message: 'Server error' });
+// **REFRESH TOKEN Route**
+router.post('/refresh-token', async (req, res) => {
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken) {
+        return res.status(401).json({ message: 'No refresh token provided' });
     }
+
+    jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, (err, decoded) => {
+        if (err) {
+            return res.status(403).json({ message: 'Invalid refresh token' });
+        }
+
+        const newToken = generateToken({ _id: decoded.userId, email: decoded.email });
+        res.cookie('token', newToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'Strict',
+            maxAge: 3600000 // 1 hour
+        });
+
+        res.json({ message: 'Token refreshed' });
+    });
 });
 
-// Serve static HTML pages (Home, About, Contact, etc.)
-router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/HomePage', 'index.html'));
-});
-router.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/about', 'about.html'));
-});
-//Dashboard routes
-router.get('/DashBoard', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/Dashboard', 'index.html'));
-});
-router.get('/DashBoard/OverView', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/Dashboard/OverView', 'overview.html'));
-}
-    )  
-router.get('/DashBoard/Pomodoro', (req, res) => {
-        res.sendFile(path.join(__dirname, '../public/DashBoard/Pomodoro', 'pomodoro.html'));
-    }
-        )
-router.get('/DashBoard/FlashCards', (req, res) => {
-        res.sendFile(path.join(__dirname, '../public/DashBoard/FlashCards', 'flashCards.html'));
-    }
-        )
-router.get('/DashBoard/Ai', (req, res) => {
-         res.sendFile(path.join(__dirname, '../public/DashBoard/Chatmodel', 'index.html'));
-    }
-        )
-
-router.get('/Contact', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/Contact', 'contact.html'));
-});
-router.get('/Pricing', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/Plans', 'plans.html'));
-});
-router.get('/Register', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/Sign-up', 'sign-up.html'));
-});
-router.get('/Login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/Sign-In', 'sign-in.html'));
+// **LOGOUT Route**
+router.post('/logout', (req, res) => {
+    res.clearCookie('token'); // Remove the JWT token cookie
+    res.clearCookie('refreshToken'); // Remove the refresh token cookie
+    res.json({ message: 'Logged out successfully' });
 });
 
-// 404 Handler for undefined routes
+// **CHECK AUTH Route**
+router.get('/check-auth', authenticateToken, (req, res) => {
+    res.json({ authenticated: true, user: req.user });
+});
+
+// **Public Pages (CSRF Kept for Forms)**
+router.get('/register', csrfProtection, (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/sign-up', 'sign-up.html'));
+});
+router.get('/login', csrfProtection, (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/sign-in', 'sign-in.html'));
+});
+
+// **Dashboard (Protected Routes)**
+router.get('/dashboard', authenticateToken, (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/dashboard', 'dashboard.html'));
+});
+router.get('/dashboard/overview', authenticateToken, (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/dashboard/overview', 'overview.html'));
+});
+router.get('/dashboard/pomodoro', authenticateToken, (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/dashboard/pomodoro', 'pomodoro.html'));
+});
+router.get('/dashboard/flashcards', authenticateToken, (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/dashboard/flashcards', 'flashCards.html'));
+});
+router.get('/dashboard/ai', authenticateToken, (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/dashboard/chatmodel', 'index.html'));
+});
+
+// **404 Handler for undefined routes**
 router.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, '/error.html'));
+    res.status(404).sendFile(path.join(__dirname, 'error.html'));
 });
 
 module.exports = router;
