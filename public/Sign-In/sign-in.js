@@ -20,7 +20,7 @@ document.getElementById('sign-in-form').addEventListener('submit', async functio
         if (response.ok) {
             errorMessage.textContent = result.message;
             errorMessage.style.color = 'green';
-            window.location.href = '/Dashboard';  // Redirect after successful login
+            window.location.href = '/DashBoard';  // Redirect after successful login
         } else {
             errorMessage.textContent = result.message;
             errorMessage.style.color = 'red';

@@ -164,10 +164,10 @@ router.get('/check-auth', authenticateToken, (req, res) => {
 
 // **Public Pages (CSRF Kept for Forms)**
 router.get('/Login', csrfProtection, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/sign-in', 'sign-in.html'))
+    res.sendFile(path.join(__dirname, '../public/Sign-In/sign-in.html'))
 });
 router.get('/register', csrfProtection, (req, res) => {
-    res.sendFile(path.join(__dirname,'../public/Sign-up','sign-up.html'));
+    res.sendFile(path.join(__dirname,'../public/Sign-up/sign-up.html'));
 });
 router.get('/about', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/about/about.html'));
@@ -183,19 +183,19 @@ router.get('/Contact', (req, res) => {
 });
 // **Dashboard (Protected Routes)**
 router.get('/dashboard', authenticateToken, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/dashboard', 'dashboard.html'));
+    res.sendFile(path.join(__dirname, '../public/DashBoard/dashboard.html'));
 });
 router.get('/dashboard/overview', authenticateToken, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/dashboard/overview', 'overview.html'));
+    res.sendFile(path.join(__dirname, '../public/DashBoard/OverView/overview.html'));
 });
 router.get('/dashboard/pomodoro', authenticateToken, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/dashboard/pomodoro', 'pomodoro.html'));
+    res.sendFile(path.join(__dirname, '../public/DashBoard/Pomodoro/pomodoro.html'));
 });
 router.get('/dashboard/flashcards', authenticateToken, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/dashboard/flashcards', 'flashCards.html'));
+    res.sendFile(path.join(__dirname, '../public/DashBoard/Flashcards/flashCards.html'));
 });
 router.get('/dashboard/ai', authenticateToken, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/dashboard/chatmodel', 'index.html'));
+    res.sendFile(path.join(__dirname, '../public/DashBoard/Chatmodel', 'index.html'));
 });
 
 // **404 Handler for undefined routes**
