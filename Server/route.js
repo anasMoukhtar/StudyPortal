@@ -192,7 +192,7 @@ router.get('/dashboard/pomodoro', authenticateToken, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/DashBoard/Pomodoro/pomodoro.html'));
 });
 router.get('/dashboard/flashcards', authenticateToken, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/DashBoard/Flashcards/flashCards.html'));
+    res.sendFile(path.join(__dirname, '../public/DashBoard/FlashCards/flashCards.html'));
 });
 router.get('/dashboard/ai', authenticateToken, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/DashBoard/Chatmodel', 'index.html'));
