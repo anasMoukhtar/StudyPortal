@@ -45,7 +45,7 @@ mongoose.connection.on('disconnected', () => {
     console.warn('MongoDB disconnected. Retrying...');
 });
 
-// ✅ Use routes
+// Use routes
 app.use('/', routes);
 
 // 404 Handler
