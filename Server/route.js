@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Client = require('./model/clients');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const path = require('path');
 const fs = require('fs');
 
