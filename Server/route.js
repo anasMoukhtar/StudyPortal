@@ -163,13 +163,24 @@ router.get('/check-auth', authenticateToken, (req, res) => {
 });
 
 // **Public Pages (CSRF Kept for Forms)**
+router.get('/Login', csrfProtection, (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/sign-in', 'sign-in.html'))
+});
 router.get('/register', csrfProtection, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/sign-up', 'sign-up.html'));
+    res.sendFile(path.join(__dirname,'../public/Sign-up','sign-up.html'));
 });
-router.get('/login', csrfProtection, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/sign-in', 'sign-in.html'));
+router.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/about/about.html'));
 });
-
+router.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/about/about.html'));
+});
+router.get('/Plans', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/Plans/plans.html'));
+});
+router.get('/Contact', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/Contact/contact.html'));
+});
 // **Dashboard (Protected Routes)**
 router.get('/dashboard', authenticateToken, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/dashboard', 'dashboard.html'));
