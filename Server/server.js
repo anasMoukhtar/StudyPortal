@@ -9,7 +9,7 @@ const staticFiles = require('./staticFiles'); // Import the static files middlew
 
 const app = express();
 const URI = process.env.MONGODBURI;
-const port =  3000 || process.env.PORT;
+const PORT =  3000 || process.env.PORT;
 app.use(bodyParser.json());
 // Middleware
 app.use(helmet({
