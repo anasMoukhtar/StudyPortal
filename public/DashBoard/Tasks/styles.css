@@ -1,0 +1,173 @@
+.options-icon{
+    float: right;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    transition: filter 0.2s;
+    filter: brightness(0.5);
+    &:hover{
+        filter: brightness(1);
+    }
+}
+
+.options-icon img{
+    cursor: pointer;
+    filter:invert(1);
+}
+.header{
+    margin-bottom:15px ;
+    filter: sepia();
+    color: #e3e3e3;
+}
+#inputs {
+    max-height: 0;
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-out, width 0.4s ease-out;
+    background-color: #1b1b1b;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* When Add Task is clicked */
+#inputs.show {
+    max-height: 200px;
+    opacity: 1;
+    width: 100%;
+}
+
+
+#inputs input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 6px 10px;
+    font-size: 14px;
+    background-color: #1b1b1b;
+    color: #e3e3e3;
+    border-radius: 12px;
+}
+
+#inputs input::placeholder {
+    color: #888;
+}
+#date {
+    position: relative;
+    background: transparent;
+    color: transparent;
+    width: 24px;
+    cursor: pointer;
+  }
+  
+  #date::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 1;
+    cursor: pointer;
+  }
+  
+  
+  #date::-webkit-datetime-edit {
+      display: none; /* Hide the date text */
+  }
+
+input[type="checkbox"] {
+    appearance: none; /* Remove default styling */
+    width: 18px;
+    height: 18px;
+    border: 2px solid #aaa;
+    border-radius: 50%; /* Make it round */
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #4CAF50; /* Change color when checked */
+    border: 2px solid #4CAF50;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.tasks-container{
+    border-radius: 20px;
+    margin: 20px;
+    background-color: #131314;
+    width: 600px;
+    height: fit-content;
+    min-height: 300px;
+    color: rgb(204, 199, 199);
+    padding: 30px;
+}
+  .task.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+  }
+  
+  .task {
+    animation: fadeInUp 0.3s ease-in-out;
+    background: #1e1e1e;
+    padding: 8px 12px;
+    border-radius: 12px;
+    margin: 5px 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.task-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.task-content strong {
+    font-size: 14px;
+    color: white;
+}
+
+.task-content p {
+    font-size: 12px;
+    color: #aaa;
+    margin: 1px 0 5px;
+}
+
+.task-extra {
+    display: flex;
+    flex-direction: column; /* Keep date & delete button separate */
+    align-items: flex-end;
+    gap: 5px; /* Keep spacing for better alignment */
+}
+
+
+
+small {
+    font-size: 11px; /* Smaller date */
+    color: #888;
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 16px;
+}

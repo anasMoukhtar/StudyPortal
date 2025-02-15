@@ -1,0 +1,180 @@
+/*Basic reset*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  color: #e3e3e3;
+  background-color: #111a22;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-attachment: fixed;
+  min-height: 110vh;
+}
+/* Sidebar styles */
+#sidebar {
+  background-color: #1F2937;
+  border-radius: 10px;
+  position: relative;
+  width: 100px;
+  height: 500px;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  margin: 10px;
+}
+
+/* Expanded sidebar styles */
+#sidebar.expanded {
+  width: 200px;
+}
+
+/* Sidebar items */
+#sidebar .sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  cursor: pointer;
+  white-space: nowrap; 
+}
+
+/* Hide the text initially */
+#sidebar p {
+  visibility: hidden; 
+  opacity: 0; 
+  margin: 0; 
+  transition: opacity 0.3s ease, visibility 0.3s ease; 
+}
+
+/* Show full text when expanded */
+#sidebar.expanded p {
+  width: auto;
+  visibility: visible; 
+  opacity: 1; 
+}
+/* Positioning the toggle button */
+#toggleButton {
+  position: relative;
+  left: 10px;
+  background: transparent; 
+  border: none;
+  padding: 0;
+  cursor: pointer; 
+}
+.des{
+  display:flex;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+#toggleButton img {
+  width: 24px;
+  height: 24px;
+  filter: invert(1); 
+}
+
+
+/* Navigation Bar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #111a22;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border: 1px solid rgb(0, 0, 0 );
+  box-shadow: 0 0 10px rgba(0, 0, 0);
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.left-section img {
+  max-height: 50px;
+}
+
+.left-section ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 15px;
+}
+
+.left-section ul li a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #333;
+  transition: color 0.3s ease-in-out;
+}
+
+.left-section ul li a:hover {
+  color: #4caf50;
+  text-decoration: underline;
+}
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.right-section button {
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  background-color: #fcb69f;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
+}
+
+.right-section button.signup {
+  background-color: #4caf50;
+}
+
+.right-section button:hover {
+  transform: scale(1.1);
+  background-color: #333;
+  color: #fff;
+  border-color: #fcb69f;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .left-section ul {
+      flex-direction: flex;
+      align-items: center;
+      gap: 8px;
+      margin-right: 35px;
+  }
+
+  nav {
+      flex-direction: column;
+      align-items: center;
+      justify-self: center;
+  }
+
+  .right-section {
+      margin-top: 15px;
+  }
+
+  #logo {
+      margin-left: 22px;
+  }
+
+  .footer ul {
+      display: flex;
+  }
+
+  body {
+      background-attachment: scroll;
+  }
+}

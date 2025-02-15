@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/commonFiles/style.css">
+    <link rel="stylesheet" href="/about/about_styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <title>About Us</title>
+    <link rel="icon" href="/Assets/favicon-16x16.png" type="image/png">
+    <link rel="stylesheet" href="../commonFiles/Active.css">
+</head>
+<body>
+    <nav>
+        <div class="left-section">
+            <img src="/Assets/meteciclelogo.png" alt="Metecicle Logo">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/Plans">Plans</a></li>
+                <li><a href="/about" class="active">About</a></li>
+                <li><a href="/DashBoard/">DashBoard</a></li>
+                <li><a href="/Contact/">Contact</a></li>
+            </ul>
+        </div>
+        <div class="right-section">
+            <button id="signUpButton" class="signup">Sign Up</button>
+            <button id="signInButton" class="signin">Sign In</button>
+        </div>
+    </nav>
+
+    <header class="about-header">
+        <div data-aos="fade-up">
+            <h1>About Us</h1>
+            <p>
+                Welcome to StudyPortal.pro, the ultimate platform for students to connect, collaborate, and achieve academic success. Dive into our story, vision, and offerings!
+            </p>
+        </div>
+    </header>
+
+    <main>
+        <section class="our-mission" data-aos="fade-right">
+            <h2>Our Mission</h2>
+            <p>
+                At StudyPortal, we aim to make learning accessible and engaging. Our mission is to empower students with tools, resources, and a community to achieve their goals effortlessly.
+            </p>
+        </section>
+
+        <section class="features" data-aos="fade-left">
+            <h2>What We Offer</h2>
+            <ul>
+                <li>AI Homework Assistance</li>
+                <li>Expert Tutoring Services</li>
+                <li>Community Support and Resources</li>
+            </ul>
+        </section>
+
+        <section class="why-choose-us" data-aos="fade-up">
+            <h2>Why Choose Us?</h2>
+            <p>
+                With cutting-edge technology and a focus on collaboration, StudyPortal.pro is your partner in academic excellence. Join thousands of students in transforming education!
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <ul>
+            <li><ion-icon name="logo-discord"></ion-icon></li>
+            <li><ion-icon name="logo-github"></ion-icon></li>
+            <li><ion-icon name="logo-youtube"></ion-icon></li>
+            <li><ion-icon name="logo-reddit"></ion-icon></li>
+        </ul>
+    </footer>
+    <script src="../commonFiles/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script nonce="<%= nonce %>">
+        AOS.init();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+/*styling the word Plans*/
+.left-section ul li a.active {
+    color: #fcb69f;
+    font-weight: bold;
+    text-decoration: underline;
+}
+/* Price Containers */
+.price-containers {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items from the top */
+    margin: 20px auto; /* Add margin to space it out */
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 20px;
+    z-index: 10;
+}
+
+/* Result styling */
+.price-containers ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+}
+
+.price-containers li {
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    border-radius: 12px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    width: 220px;
+    text-align: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.price-containers li:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
+}
+
+.price-containers .icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.price-containers h2 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.price-containers .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #555;
+    margin: 6px 0;
+}
+
+.price-containers .sub-info {
+    font-size: 0.8rem;
+    color: #777;
+    margin: 8px 0 12px;
+    font-style: italic;
+}
+
+.price-containers .features {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.price-containers .features li {
+    margin: 4px 0;
+    color: #333;
+    font-size: 0.85rem;
+    position: relative;
+    padding-left: 20px;
+}
+
+.price-containers .features li::before {
+    content: "✔";
+    color: #4caf50;
+    font-size: 0.85rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.price-containers .select-plan {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    color: #fff;
+    background: linear-gradient(90deg, #4caf50, #43a047);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.price-containers .basic-plan .select-plan {
+    background: linear-gradient(90deg, #007bff, #0056b3);
+}
+
+.price-containers .dev-plan .select-plan {
+    background: linear-gradient(90deg, #ff5722, #e64a19);
+}
+
+.price-containers .select-plan:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* Adjust footer position and prevent overlap */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    text-align: center;
+    z-index: 5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Price Containers */
+    .price-containers {
+        max-width: 100%; /* Remove max-width for smaller screens */
+        padding: 10px;
+    }
+
+    .price-containers li {
+        width: 100%; /* Allow full width on small screens */
+    }
+}
