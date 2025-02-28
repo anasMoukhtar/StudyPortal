@@ -211,7 +211,10 @@ async function sendMessage(userMessage) {
     try {
         const response = await fetch("/api/chat", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${HF_TOKEN}`, // Add the Authorization header
+            },
             body: JSON.stringify({
                 oldChat: formattedHistory, // Old chat history (with prefixes)
                 newChat: userMessage, // New user message (without prefix)
