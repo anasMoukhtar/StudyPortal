@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '.env') });
+require('dotenv').config({ path: require('path').join(__dirname, '/.env') });
 const cors = require('cors');
 const routes = require('./route');
 const staticFiles = require('./staticFiles');
@@ -14,18 +13,12 @@ const app = express();
 const URI = process.env.MONGODBURI;
 const PORT = process.env.PORT || 3000;
 const Client_URL = process.env.Client_URL.trim() || 'http://localhost:3000';
-
-// Enable trust proxy
-app.set('trust proxy', true);
-
-// Middleware
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors());
-app.use(helmet({ contentSecurityPolicy: false }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
+// Middleware
+app.use(cors())
+app.use(express.json());  
+app.use(express.urlencoded({ extended: true })); 
 // Serve static files
 staticFiles(app);
 
@@ -44,16 +37,13 @@ mongoose.connection.on('error', (err) => {
 mongoose.connection.on('disconnected', () => {
     console.warn('MongoDB disconnected. Retrying...');
 });
-
-// Routes
-app.use('/', pdfhandler);
+app.use('/',pdfhandler)
+// Use routes
 app.use('/', routes);
-
 // 404 Handler
 app.use((req, res) => {
     res.status(404).json({ message: 'Route not found' });
 });
-
 // Global Error Handler
 app.use((err, req, res, next) => {
     console.error(err.stack);
@@ -63,13 +53,9 @@ app.use((err, req, res, next) => {
 // Graceful Shutdown
 process.on('SIGINT', async () => {
     console.log('Shutting down server...');
-    await mongoose.connection.close().then(() => {
-        console.log('MongoDB connection closed.');
-        process.exit(0);
-    }).catch((err) => {
-        console.error('Error closing MongoDB connection:', err);
-        process.exit(1);
-    });
+    await mongoose.connection.close();
+    console.log('MongoDB connection closed.');
+    process.exit(0);
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
