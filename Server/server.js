@@ -21,10 +21,7 @@ app.set('trust proxy', true);
 // Middleware
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors({
-    origin: Client_URL,
-    credentials: true,
-}));
+app.use(cors());
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
