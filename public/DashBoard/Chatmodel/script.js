@@ -209,7 +209,7 @@ async function sendMessage(userMessage) {
         .join("\n");
 
     try {
-        const response = await fetch("https://studyportal-production.up.railway.app/api/chat", {
+        const response = await fetch("/api/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
