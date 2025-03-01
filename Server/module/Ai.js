@@ -12,7 +12,6 @@ if (!HF_TOKEN) {
 
 // Middleware to parse JSON
 Ai.use(express.json());
-
 Ai.post("/api/chat", async (req, res) => {
     const { oldChat, newChat } = req.body;
     if (!newChat) {
