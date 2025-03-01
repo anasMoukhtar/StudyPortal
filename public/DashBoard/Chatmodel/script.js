@@ -209,17 +209,18 @@ async function sendMessage(userMessage) {
         .join("\n");
 
     try {
-        const response = await fetch("/api/chat", {
+        const response = await fetch("https://studyportal-production.up.railway.app/api/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}` // Include the token here
             },
+            credentials: "include", // Send cookies with the request
             body: JSON.stringify({
-                oldChat: formattedHistory, // Old chat history (with prefixes)
-                newChat: userMessage, // New user message (without prefix)
-            }),
+                oldChat: previousMessages,
+                newChat: userInput
+            })
         });
+        
 
         if (!response.ok) {
             const errorData = await response.json();
