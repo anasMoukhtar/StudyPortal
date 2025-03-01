@@ -1,7 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 dotenv.config({ path: "../.env" });
-
+const authenticateToken = require("../Middleware/authMiddleware.js")
 const Ai = express.Router();
 const HF_TOKEN = process.env.HF_TOKEN;
 
@@ -12,7 +12,7 @@ if (!HF_TOKEN) {
 
 // Middleware to parse JSON
 Ai.use(express.json());
-Ai.post("/api/chat", async (req, res) => {
+Ai.post("/api/chat",authenticateToken, async (req, res) => {
     const { oldChat, newChat } = req.body;
     if (!newChat) {
         return res.status(400).json({ message: "Message is required" });
