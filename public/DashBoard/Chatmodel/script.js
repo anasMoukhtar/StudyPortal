@@ -214,13 +214,12 @@ async function sendMessage(userMessage) {
             headers: {
                 "Content-Type": "application/json",
             },
-            credentials: "include", // Send cookies with the request
+            credentials: "include",
             body: JSON.stringify({
-                oldChat: previousMessages,
-                newChat: userInput
+                oldChat: formattedHistory, 
+                newChat: userMessage
             })
         });
-        
 
         if (!response.ok) {
             const errorData = await response.json();
