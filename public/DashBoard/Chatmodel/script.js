@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const chatOutput = document.getElementById("chat-output"); // Define chatOutput here
     const imgInput = document.getElementById("img-input");
     const loadingIndicator = document.getElementById("loading-indicator");
-
+    const token = localStorage.getItem("token");
     // Check if required elements exist
     if (!chatForm || !chatInput || !chatOutput || !imgInput || !loadingIndicator) {
         console.error("Required elements not found in the HTML.");
@@ -211,7 +211,10 @@ async function sendMessage(userMessage) {
     try {
         const response = await fetch("/api/chat", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}` // Include the token here
+            },
             body: JSON.stringify({
                 oldChat: formattedHistory, // Old chat history (with prefixes)
                 newChat: userMessage, // New user message (without prefix)
