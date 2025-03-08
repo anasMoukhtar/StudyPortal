@@ -1,0 +1,5 @@
+.left-section ul li a.active {
+    color: #fcb69f;
+    font-weight: bold;
+    text-decoration: underline;
+}

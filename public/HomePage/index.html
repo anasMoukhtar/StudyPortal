@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../commonFiles/Active.css">
+    <link rel="stylesheet" href="../commonFiles/style.css">
+    <link rel="stylesheet" href="results.css">
+    <link rel="stylesheet" href="selectedSchools.css">
+    
+    <title>School Finder</title>
+    <link rel="icon" href="/Assets/favicon-16x16.png" type="image/png">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="left-section">
+            <img src="/Assets/meteciclelogo.png" alt="Metecicle Logo" id="logo">
+            <ul>
+                <li><a  class="active" href="/">Home</a></li>
+                <li><a href="/Plans">Plans</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/DashBoard">Dashboard</a></li>
+                <li><a href="/Contact/">Contact</a></li>
+            </ul>
+        </div>
+        <div class="right-section">
+            <button id="signUpButton" class="signup">Sign Up</button>
+            <button id="signInButton" class="signin">Sign In</button>
+        </div>
+    </nav>
+
+    <!-- Search Section -->
+    <div class="search-school">
+        <input 
+            type="text" 
+            id="searchInput" 
+            aria-label="Search school by name or zip" 
+            placeholder="Enter school name or zip..." 
+        >
+        <button id="SearchButton" aria-label="Search button" onclick="fetchSchools()">
+            <ion-icon name="search-outline"></ion-icon>
+        </button>
+    </div>
+
+    <!-- Search Results Section -->
+    <div id="searchResults" aria-live="polite"></div>
+
+    <!-- Selected Schools Section -->
+    <div id="selected" aria-live="polite"></div>
+
+    <!-- Footer -->
+    <footer>
+        <ul>
+            <li><a href="#"><ion-icon name="logo-discord"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-github"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-youtube"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-reddit"></ion-icon></a></li>
+        </ul>
+    </footer>
+
+    <!-- Ionicons Scripts -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../commonFiles/script.js" defer></script>
+</body>
+</html>
