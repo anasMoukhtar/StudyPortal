@@ -16,10 +16,10 @@ const Client_URL = process.env.Client_URL.trim() || 'http://localhost:3000';
 app.use(bodyParser.json());
 app.use(cookieParser());
 // Middleware
-app.use(cors())
-app.use(express.json());  
-app.use(express.urlencoded({ extended: true })); 
+//app.use(cors())
+//app.use(express.urlencoded({ extended: true })); 
 // Serve static files
+app.use(express.json());  
 staticFiles(app);
 
 // MongoDB Connection with error handling
