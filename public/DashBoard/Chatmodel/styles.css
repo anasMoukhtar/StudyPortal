@@ -1,0 +1,254 @@
+body{overflow: hidden;}
+/* Chat Container */
+.Ai-container {
+    margin-right: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 84vh;
+    overflow: hidden;
+}
+
+/* Chat messages section */
+.chat {
+    flex: 1; 
+    overflow-y: auto; 
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Section */
+.input-container {
+    display: flex;
+    align-items: center;
+    background: #404045;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    flex-shrink: 0;
+    position: relative; 
+}
+/* Individual Message */
+.message {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 70%;
+}
+.message.user-message {
+    display: flex;
+    flex-direction: column;
+    background: #7676ff78;
+    display: flex;
+    position: relative;
+    justify-self: end;
+}
+.message.ai-message {
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-self: start;
+    max-width: 500px;
+    background-color: #637bf41c;
+}
+.code-block {
+    display: flex;
+    flex-direction: column;
+    background-color: #29262642;
+    color: #ffffff;
+    border: 4px solid #29262642;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px 0;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+.code-block code {
+    display: flex;
+    background-color: #8478782e;
+    color: #ffffff;
+    border: 4px solid #29262642;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+.code-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Text Input */
+#chat-input {
+    color: white;
+    background-color: #404045;
+    flex: 1;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+    resize: none; /* Prevent resizing */
+}
+.copy-button{
+    cursor: pointer;
+}
+/* Send Button */
+#sendBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#sendBtn img {
+    width: 24px;
+    height: 24px;
+}
+#img-input{
+    display: none;
+}
+#Image_Icon{
+    cursor: pointer;
+    margin-left: 10px;
+}
+/* Loader styles */
+
+.loader-hidden {
+    animation:disappearing 0.2s ease-in-out forwards;
+}
+
+.loader::after {
+    content: "";
+    display: block;
+    border: 3px solid white;
+    width: 30px;
+    height: 30px;
+    border-top-color: #404045;
+    border-radius: 50%;
+    margin: 10px;
+    animation: image-loading 1s linear infinite;
+}
+
+@keyframes image-loading {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}
+@keyframes disappearing {
+    from {
+        scale: 1;
+        visibility: visible;
+        opacity: 1;
+    }
+    to{
+        scale: 0;
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+/* Image container styles */
+.image-container {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+}
+.Delete-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    z-index: 10;
+    background: white;
+    padding: 5px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation for showing the image container */
+@keyframes loading-image-container {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Apply the animation when the container is visible */
+.image-container.visible {
+    display: flex;
+    animation: loading-image-container 0.4s linear forwards;
+}
+/*changing the color of tags of HTML*/
+.hljs-tag .hljs-attr, .hljs-tag .hljs-name{
+    color: #a75858 !important;
+}
+.hljs-punctuation, .hljs-tag{
+    color: #f8f8f2 !important;
+}
+.hljs-deletion, .hljs-number, .hljs-quote, .hljs-selector-class, .hljs-selector-id, .hljs-string, .hljs-template-tag, .hljs-type{
+    color: #8be9fd !important;
+}
+/*Ai thinking ... indicator*/
+.loading-message {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #888;
+    font-style: italic;
+    margin: 10px 0;
+}
+
+.loading-dots span {
+    opacity: 0;
+    animation: blink 1s infinite;
+}
+
+.loading-dots span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.loading-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+strong{
+    font-size: large;
+    font-weight: bold;
+    color: rgb(210, 74, 74);
+}

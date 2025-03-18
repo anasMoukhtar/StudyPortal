@@ -1,0 +1,144 @@
+<html>
+  <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="../Files/styles.css"/>
+    <link rel="stylesheet" href="/public/Files/Active.css"/>
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
+
+    <title>DashBoard</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+        <link rel="stylesheet" href="/src/tailwindStyles.css">
+                <script src="/src/darkmode.js" defer></script>
+        <script>if (localStorage.getItem("darkmode") === "active") {document.documentElement.setAttribute("data-theme", "dark");}
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+  <!--Nav bar-->
+  <nav>
+    <div class="left-section">
+        <img src="/Assets/meteciclelogo.png" alt="Metecicle Logo">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/Plans">Plans</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/DashBoard/"  class="active">DashBoard</a></li>
+            <li><a href="/Contact/">Contact</a></li>
+        </ul>
+    </div>
+    <div class="right-section">
+      <div class="flex gap-2">
+        <button id="theme-switch" class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#243747] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+          <!-- moon -->
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z"/></svg>
+           <!-- sun -->
+           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z"/></svg>
+           
+        </button>
+        <button id="settings-btn">
+          <div class="text-white" data-icon="Gear" data-size="20px" data-weight="regular">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+              <path
+                d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"
+              ></path>
+            </svg>
+          </div>
+          <div>
+        </button>
+<img id="profilePicture" style="border-radius: 50%;height: 40px;width: 40px;" src="/public/Assets/pfp.png">
+        </div>
+      </div>
+    </div>
+</nav>
+<div style="display: flex;">
+<!--SideBar-->
+   <div id="sidebar">
+          
+    <div>
+      <button id="toggleButton" class="text-white text-lg font-medium leading-normal"><img src="/public/Assets/sidebar.png"></button>
+      <div id="overView" class="sidebar-item" style="cursor: pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"/></svg>
+          <p  >Overview</p>
+      </div>
+<div id="Shop" class="sidebar-item ">
+          <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier"> 
+              <path d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> 
+            </g>
+          </svg>
+          <p  >Shop</p>
+      </div>
+      <div  id="tasks" class="sidebar-item  rounded-xl">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v308L694-306l-85-85-170 169 102 102H200Zm240-320h240v-80H440v80Zm0-160h240v-80H440v80ZM694-80 552-222l57-56 85 85 170-170 56 57L694-80ZM320-440q17 0 28.5-11.5T360-480q0-17-11.5-28.5T320-520q-17 0-28.5 11.5T280-480q0 17 11.5 28.5T320-440Zm0-160q17 0 28.5-11.5T360-640q0-17-11.5-28.5T320-680q-17 0-28.5 11.5T280-640q0 17 11.5 28.5T320-600Z"/></svg>
+          <p  >Tasks</p>
+      </div>
+      <div id="chatBot" class="sidebar-item ">
+        <svg width="24" height="24" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="6"><path d="M50,100 Q50,40 100,40 Q150,40 150,100 Q150,160 100,160 Q50,160 50,100 Z"/><line x1="100" y1="40" x2="100" y2="20"/><line x1="100" y1="160" x2="100" y2="180"/><line x1="50" y1="100" x2="30" y2="100"/><line x1="150" y1="100" x2="170" y2="100"/><line x1="75" y1="60" x2="60" y2="50"/><line x1="125" y1="60" x2="140" y2="50"/><line x1="75" y1="140" x2="60" y2="150"/><line x1="125" y1="140" x2="140" y2="150"/><circle cx="100" cy="20" r="5" fill="white"/><circle cx="100" cy="180" r="5" fill="white"/><circle cx="30" cy="100" r="5" fill="white"/><circle cx="170" cy="100" r="5" fill="white"/><circle cx="60" cy="50" r="5" fill="white"/><circle cx="140" cy="50" r="5" fill="white"/><circle cx="60" cy="150" r="5" fill="white"/><circle cx="140" cy="150" r="5" fill="white"/></svg>
+          <p  >Ai</p>
+      </div>
+      <div id="Doqu" class="sidebar-item " style="cursor: pointer;">
+          <svg fill="#ffffff" height="24px" width="24px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 201.914 201.914" xml:space="preserve">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier"> 
+              <path d="M174.008,0H56.307c-4.142,0-7.5,3.358-7.5,7.5v20.393H27.906c-4.142,0-7.5,3.358-7.5,7.5v159.021c0,4.142,3.358,7.5,7.5,7.5 H145.9c4.142,0,7.5-3.358,7.5-7.5v-16.603h20.608c4.142,0,7.5-3.358,7.5-7.5V7.5C181.508,3.358,178.15,0,174.008,0z M124.536,149.754H49.269c-4.142,0-7.5-3.358-7.5-7.5s3.358-7.5,7.5-7.5h75.268c4.142,0,7.5,3.358,7.5,7.5 S128.678,149.754,124.536,149.754z M124.536,101.097H49.269c-4.142,0-7.5-3.358-7.5-7.5s3.358-7.5,7.5-7.5h75.268 c4.142,0,7.5,3.358,7.5,7.5S128.678,101.097,124.536,101.097z M124.536,63.387H49.269c-4.142,0-7.5-3.358-7.5-7.5s3.358-7.5,7.5-7.5 h75.268c4.142,0,7.5,3.358,7.5,7.5S128.678,63.387,124.536,63.387z M166.508,162.811H153.4V35.393c0-4.142-3.358-7.5-7.5-7.5H63.807 V15h102.701V162.811z"></path>
+            </g>
+          </svg>
+          <p  >Doqu</p>
+      </div> 
+      <div id="pomodoro" class="sidebar-item " >
+          <svg fill="#ffffff" height="24px" width="24px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 455.00 455.00" xml:space="preserve" stroke="#ffffff" transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)" stroke-width="0.00455">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.9099999999999999"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path d="M332.229,90.04l14.238-27.159l-26.57-13.93L305.67,76.087c-19.618-8.465-40.875-13.849-63.17-15.523V30h48.269V0H164.231v30 H212.5v30.563c-22.295,1.674-43.553,7.059-63.171,15.523L135.103,48.95l-26.57,13.93l14.239,27.16 C67.055,124.958,30,186.897,30,257.5C30,366.576,118.424,455,227.5,455S425,366.576,425,257.5 C425,186.896,387.944,124.958,332.229,90.04z M355,272.5H212.5V130h30v112.5H355V272.5z"></path>
+            </g>
+          </svg>
+          <p style="cursor: pointer;"  >Timer</p>
+        </div>
+      <div id="flashCards" class="sidebar-item " style="cursor: pointer;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="4" width="14" height="16" rx="3" stroke="white" stroke-width="2"/>
+            <line x1="7" y1="7" x2="16" y2="7" stroke="white" stroke-width="2"/>
+            <line x1="7" y1="11" x2="16" y2="11" stroke="white" stroke-width="2"/>
+            <line x1="7" y1="15" x2="14" y2="15" stroke="white" stroke-width="2"/>
+          </svg>
+          <p style="cursor: pointer;"  >FlashCards</p>
+      </div>
+  </div>
+</div>
+          <!-- Main Content--> 
+          <div class="controls">
+            <button class="expand-btn" onclick="toggleForm()">➕ </button>
+            <div id="form-container" class="form-container">
+                <div class="input-group">
+                    <input type="text" id="subject" required>
+                    <label>Term</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="description" required>
+                    <label>Description</label>
+                </div>
+                <button class="Add-btn" onclick="addCard()">Add Flashcard</button>
+            </div>
+        </div>
+        
+        <div class="card-container" id="card-container">
+            <!-- Cards will be added here -->
+        </div>
+      </div>
+    </body>
+    <script src="/src/LoadingProfilePic.js"></script>
+    <script src="../Files/script.js"></script>
+    <script src="script.js"></script>
+</html>
