@@ -100,7 +100,7 @@ Ai.post("/api/chat", authenticateToken, async (req, res) => {
                 "X-Title": "StudyPortal AI"
             },
             body: JSON.stringify({
-                model: "google/gemma-3-27b-it:free",
+                model: "google/gemini-flash-1.5-8b-exp",
                 messages: messages,
                 temperature: 0.2,
             })
