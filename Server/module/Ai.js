@@ -45,7 +45,6 @@ Ai.post("/api/chat", authenticateToken, async (req, res) => {
             3️⃣ **Markdown Formatting:**  
             - **Bold** → \`**bold**\` or \`<strong>bold</strong>\`  
             - *Italic* → \`*italic*\` or \`<em>italic</em>\`  
-
             4️⃣ **Links Styling:**  
             - All links should **open in a new tab**.  
             - Always underline \`<a>\` elements and style them with **#007bff** for better visibility.  
