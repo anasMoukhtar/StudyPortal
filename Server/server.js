@@ -7,7 +7,6 @@ require('dotenv').config({ path: require('path').join(__dirname, '/.env') });
 const cors = require('cors');
 const routes = require('./route');
 const staticFiles = require('./staticFiles');
-const pdfhandler = require('./module/pdfhandler');
 const pfp = require('./module/pfp');
 
 const app = express();
@@ -45,9 +44,6 @@ mongoose.connection.on('error', (err) => {
 mongoose.connection.on('disconnected', () => {
     console.warn('MongoDB disconnected. Retrying...');
 });
-
-app.use('/', pdfhandler);
-
 // Use routes
 app.use('/', routes);
 
