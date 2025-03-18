@@ -8,21 +8,28 @@ const cors = require('cors');
 const routes = require('./route');
 const staticFiles = require('./staticFiles');
 const pdfhandler = require('./module/pdfhandler');
-const pfp = require('./module/pfp')
+const pfp = require('./module/pfp');
+
 const app = express();
 const URI = process.env.MONGODBURI;
 const PORT = process.env.PORT || 3000;
 const Client_URL = process.env.Client_URL.trim() || 'http://localhost:3000';
+
+app.set('trust proxy', 1);
+
 app.use(cookieParser());
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+
 // Middleware
-app.use(cors())
+app.use(cors());
 app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ limit: '10mb', extended: true })); 
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
+
 // Serve static files
 staticFiles(app);
-app.use('/', pfp)
+app.use('/', pfp);
+
 // MongoDB Connection with error handling
 mongoose.connect(URI)
     .then(() => console.log('MongoDB connection established'))
@@ -38,13 +45,17 @@ mongoose.connection.on('error', (err) => {
 mongoose.connection.on('disconnected', () => {
     console.warn('MongoDB disconnected. Retrying...');
 });
-app.use('/',pdfhandler)
+
+app.use('/', pdfhandler);
+
 // Use routes
 app.use('/', routes);
+
 // 404 Handler
 app.use((req, res) => {
     res.status(404).json({ message: 'Route not found' });
 });
+
 // Global Error Handler
 app.use((err, req, res, next) => {
     console.error(err.stack);
